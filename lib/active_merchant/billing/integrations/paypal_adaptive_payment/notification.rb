@@ -50,6 +50,15 @@ module ActiveMerchant
             status == "COMPLETED"
           end
 
+          # Was the subscription cancelled?
+          def cancelled?
+            (status == "CANCELED") && (params["approved"] == "true")
+          end
+
+          def approved?
+            (status == "ACTIVE") && (params["approved"] == "true")
+          end
+
           # Status of transaction. List of possible values:
           # <tt>CREATED</tt>::
           # <tt>COMPLETED</tt>::
